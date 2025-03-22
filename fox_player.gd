@@ -90,7 +90,7 @@ func startup():
 	in_air = false
 	alive = true
 	$AnimatedSprite2D.animation = "idle"
-	if $AnimatedSprite2D.is_flipped_h(): $AnimatedSprite2D.flip_h = true
+	if $AnimatedSprite2D.is_flipped_h(): $AnimatedSprite2D.flip_h = false
 
 
 func _on_level_1_game_won() -> void:
