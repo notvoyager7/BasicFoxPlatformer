@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2gc71aqebfx5"]
+
+[ext_resource type="Texture2D" uid="uid://bwfr8ijmfvrge" path="res://art/Jungle Asset Pack/jungle tileset/jungle tileset.png" id="1_t087p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taftn"]
+atlas = ExtResource("1_t087p")
+region = Rect2(528, 112, 80, 48)
+
+[node name="GrassBridge" type="StaticBody2D"]
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_taftn")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(38, -21, -38, -21, -38, -10, -22, -10, -22, 11, -38, 11, -38, 22, 22, 22, 38, 22, 38, 11, 22, 11, 22, -10, 38, -10)

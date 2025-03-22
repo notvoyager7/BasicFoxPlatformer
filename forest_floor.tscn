@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5mufba3dvs8q"]
+
+[ext_resource type="PackedScene" uid="uid://dv2nrpv77sptg" path="res://grass_tile.tscn" id="1_q5spy"]
+
+[node name="ForestFloor" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="GrassTile" parent="." instance=ExtResource("1_q5spy")]
+position = Vector2(80, 632)
+
+[node name="GrassTile2" parent="." instance=ExtResource("1_q5spy")]
+position = Vector2(240, 632)
+
+[node name="GrassTile3" parent="." instance=ExtResource("1_q5spy")]
+position = Vector2(400, 632)
+
+[node name="GrassTile4" parent="." instance=ExtResource("1_q5spy")]
+position = Vector2(560, 632)
+
+[node name="GrassTile5" parent="." instance=ExtResource("1_q5spy")]
+position = Vector2(720, 632)
+
+[node name="GrassTile6" parent="." instance=ExtResource("1_q5spy")]
+position = Vector2(880, 632)
+
+[node name="GrassTile7" parent="." instance=ExtResource("1_q5spy")]
+position = Vector2(1040, 632)
+
+[node name="GrassTile8" parent="." instance=ExtResource("1_q5spy")]
+position = Vector2(1200, 632)

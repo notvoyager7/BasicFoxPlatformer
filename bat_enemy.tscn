@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc0ayhuccyxcm"]
+
+[ext_resource type="Texture2D" uid="uid://bbp77qm3n7adu" path="res://art/bat.png" id="1_img6u"]
+
+[sub_resource type="GDScript" id="GDScript_img6u"]
+script/source = "extends RigidBody2D
+
+var speed = randf_range(200, 800)
+var in_flight = false
+var destination = Vector2(randf_range(50, 1102), randf_range(50, 598))
+var velocity = Vector2(speed, 0)
+var at_start = true
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	# set inititial velocity direction
+	velocity = velocity.rotated(position.angle_to_point(destination))
+	$AnimatedSprite2D.animation = \"flying\"
+	$AnimatedSprite2D.play()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var destination_reached = position.x >= destination.x - 5 and position.x <= destination.x + 5
+	
+	if destination_reached or at_start:
+		in_flight = false
+		at_start = false
+		
+		velocity = Vector2.ZERO # set vel 0
+		
+		# get new dest
+		var new_destination = Vector2(randf_range(50, 1102), randf_range(50, 598))
+		destination = new_destination
+		destination.x += randf_range(-30, 30)
+		destination.y += randf_range(-30, 30)
+		
+		# wait after reaching dest
+		await get_tree().create_timer(1.0).timeout
+		# set new velocity
+		velocity = Vector2(speed, 0)
+		velocity = velocity.rotated(position.angle_to_point(destination))
+			
+		# orient animation
+		if destination.x < position.x: $AnimatedSprite2D.flip_h = true
+		else: $AnimatedSprite2D.flip_h = false
+		
+		in_flight = true # begin flying again
+	
+	# fly if in-flight
+	if in_flight: position += velocity * delta
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ac31"]
+atlas = ExtResource("1_img6u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0rt2"]
+atlas = ExtResource("1_img6u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3kk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ac31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0rt2")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gpfa1"]
+radius = 6.0
+height = 28.0
+
+[node name="BatEnemy" type="RigidBody2D"]
+collision_layer = 4
+gravity_scale = 0.0
+script = SubResource("GDScript_img6u")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_e3kk6")
+animation = &"flying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_gpfa1")

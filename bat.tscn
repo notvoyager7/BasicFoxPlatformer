@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://o1es3fxpbrj2"]
+
+[ext_resource type="Script" uid="uid://c0w63s14de6eb" path="res://bat.gd" id="1_pb2o4"]
+[ext_resource type="Texture2D" uid="uid://bbp77qm3n7adu" path="res://art/bat.png" id="2_tofr1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vobq3"]
+atlas = ExtResource("2_tofr1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tubu"]
+atlas = ExtResource("2_tofr1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3tecl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vobq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tubu")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tofr1"]
+radius = 6.0
+height = 28.0
+
+[node name="Bat" type="StaticBody2D"]
+script = ExtResource("1_pb2o4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3tecl")
+animation = &"flying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_tofr1")

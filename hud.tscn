@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxmjcdnmuitpn"]
+
+[ext_resource type="Script" uid="uid://cg840fwg5kay" path="res://hud.gd" id="1_8sq4i"]
+[ext_resource type="FontFile" uid="uid://ym0c3cjid0k7" path="res://fonts/firlest.regular.otf" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://csr7ksgdkmtpo" path="res://art/heart_sprite_sheet.png" id="2_64ctp"]
+[ext_resource type="FontFile" uid="uid://dffnj4pukxnco" path="res://fonts/Dragon Fire.ttf" id="4_640wx"]
+[ext_resource type="PackedScene" uid="uid://c0573vxdobap6" path="res://forest_background.tscn" id="5_a2258"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sq4i"]
+atlas = ExtResource("2_64ctp")
+region = Rect2(4, 3, 24, 22)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_8sq4i")
+
+[node name="ForestBackground" parent="." instance=ExtResource("5_a2258")]
+
+[node name="HeartsCollected" type="Label" parent="."]
+offset_left = 70.0
+offset_top = 20.0
+offset_right = 110.0
+offset_bottom = 43.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("1_37p78")
+text = ": 0 / "
+
+[node name="HeartIcon" type="Sprite2D" parent="."]
+position = Vector2(36, 43)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_8sq4i")
+
+[node name="PlayButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = 40.5
+offset_right = 20.5
+offset_bottom = 71.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_640wx")
+text = "Play"
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = -60.0
+offset_right = -198.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+theme_override_fonts/font = ExtResource("4_640wx")
+text = "Brave the Dark Forest"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.5
+offset_top = 88.5
+offset_right = 315.5
+offset_bottom = 137.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_640wx")
+text = "An evil vampire wizard has turned you into a fox! Collect the hearts in every level, and maybe your humanity can be regained! But, beware of bats..."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
