@@ -77,10 +77,10 @@ func handle_collision(collision):
 	
 func on_death():
 	if not alive: return # do nothing if already dead
-	
-	alive = false
-	velocity = Vector2.ZERO
 	set_collision_mask_value(1, false) # disables collisions for the player on death
+	alive = false
+	
+	velocity = Vector2.ZERO
 	$AnimatedSprite2D.animation = "death"
 	$AnimatedSprite2D.play()
 	
