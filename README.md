@@ -1,6 +1,6 @@
 # Fox Platformer
 
-![TitleScreen](ReadMeImages/TitleScreen.png)
+![TitleScreen](ReadMeImages/GameScreenshot1.png)
 
 This is my first attempt at making a very simple game in Godot. I think it turned out super well!
 
